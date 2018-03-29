@@ -1,0 +1,188 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* debut de home */
+
+.contglobalhome{
+    position:relative;
+}
+
+.logohome{
+    width:40%;
+    height:auto;
+    margin-left:50%;
+    transform:translate(-50%);
+    z-index:100;
+    position: relative;
+}
+
+.conthome{
+    width:80%;
+    height:auto;
+    margin-left:50%;
+    transform:translate(-50%);
+    z-index:90;
+    margin-top:-40px;
+    background-color:white;
+    border-radius:10px;
+    text-align:center;
+    margin-bottom:100px;
+    padding-bottom:75px;
+}
+
+.titlehome{
+    padding-top: 60px;
+    padding-bottom: 0px;
+    font-weight:bold;
+    font-size:25px;
+    font-family:Arial,sans-serif;
+    font-family: 'Acme', sans-serif;
+    margin:0;
+}
+
+.txthome{
+    padding-top:5px;
+    font-weight:auto;
+    font-size:17px;
+    font-family:Arial;
+    font-family: 'Acme', sans-serif;
+    margin:0;
+    padding-bottom:30px;
+    border-bottom:2px solid;
+    display:inline-block;
+
+}
+
+.contstep1{
+    display:block;
+    margin-bottom:30px;
+    margin-top:75px;
+}
+
+.profileimage{
+    height:100px;
+    width:auto;
+    display:inline-block;
+    transform:translate(-200%);
+    margin:0;
+}
+
+.textstep1{
+    display:inline-block;
+    margin:0;
+    position:absolute;
+    line-height:100px;
+    margin-left:-190px;
+    font-weight:bold;
+    font-family: 'Acme', sans-serif;
+    
+}
+
+.textstep2{
+    display:inline-block;
+    margin:0;
+    position:absolute;
+    margin-left:-190px;
+    font-weight:bold;
+    font-family: 'Acme', sans-serif;
+    text-align:left;
+    max-width:400px;
+}
+
+.textstep3{
+    display:inline-block;
+    margin:0;
+    position:absolute;
+    margin-left:-190px;
+    font-weight:bold;
+    font-family: 'Acme', sans-serif;
+    text-align:left;
+    max-width:400px;
+    padding-top:30px;
+}
+
+.buttonnext{
+    width:200px;
+    margin-top:30px;
+    height:40px;
+    color:white;
+    font-family:'Acme', sans-serif;
+    background-color:rgb(36, 82, 119);
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.buttonnext:hover{
+    background-color:rgb(4, 22, 37);
+}
+
+/* debut de login */
+
+
+.contlogin{
+    position:fixed;
+    background-color:#29a3a3;
+    padding:15px;
+    text-align:center;
+    border-radius:10px;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:101;
+    transform: translate(0,-100%);
+    transition:1s;
+}
+
+.globlogin{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.buttongohome{
+    position:absolute;
+    left:15px;
+    top:15px;
+    border-radius:5px;
+    border:none;
+    background-color:#2b73ad;
+    padding:15px;
+    color:white;
+    font-family:'acme',sans-serif;
+    width:100px;
+    cursor:pointer;    
+}
+
+.logintxt{
+    font-family:'acme',sans-serif;
+    color:white;
+    font-size:25px;
+    font-weight:bold;
+}
+
+.boutonconnection{
+    height:50px;
+    width:auto;
+    border:none;
+    background-color:#195e96;
+    border-radius:4px;
+    color:white;
+    font-weight:bold;
+    line-height:50px;
+    padding-right:20px;
+    cursor:pointer;
+}
+
+.googleconnect{
+    height:35px;
+    margin-top:6px;
+    float:left;
+    padding-left:10px;
+    padding-right:20px;
+}
+/* fin de login */
+
+/* fin de home */

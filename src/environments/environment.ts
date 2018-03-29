@@ -13,4 +13,8 @@ export const environment = {
     storageBucket: "angularauth-62a23.appspot.com",
     messagingSenderId: "838191329069"
   }
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> dev

@@ -1,7 +1,11 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
+<<<<<<< HEAD
     "name": "angular1"
+=======
+    "name": "angul"
+>>>>>>> dev
   },
   "apps": [
     {
@@ -19,7 +23,11 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+<<<<<<< HEAD
         "styles.css"
+=======
+        "styles.scss"
+>>>>>>> dev
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -54,7 +62,11 @@
     }
   },
   "defaults": {
+<<<<<<< HEAD
     "styleExt": "css",
+=======
+    "styleExt": "scss",
+>>>>>>> dev
     "component": {}
   }
 }

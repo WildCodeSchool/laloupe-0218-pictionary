@@ -1,5 +1,52 @@
+<<<<<<< HEAD
 <img src="assets/pictionary.png" class="logohome">
 <div class="conthome">
   <p class="titlehome">WELCOME TO PICTIONARY !</p>
   <p class="txthome">Play together with you friends and make custom rooms to compete with others.</p>
+=======
+<div class="contglobalhome">
+  <img src="assets/pictionary.png" class="logohome">
+  <div class="conthome">
+    <p class="titlehome">WELCOME TO PICTIONARY !</p>
+    <p class="txthome">Play together with your friends and make some crazy games.</p>
+    <div class="contstep1">
+      <img src="assets/profile.png" class="profileimage">
+      <p class="textstep1">STEP 1 - CONNECT TO YOUR GOOGLE ACCOUNT.</p>
+    </div>
+    <div class="contstep1">
+      <img src="assets/penstep2.jpg" class="profileimage">
+      <p class="textstep2">
+        STEP 2 - IF YOU ARE THE DRAWER, YOU WILL HAVE TO DRAW AN IMPOSED WORD OF OUR PROPOSITION LIST AND MAKE SOMEONE GUESS THIS
+        WORD IN A GIVEN TIME.
+        <br> IF YOU ARE THE DIVINER YOU WILL HAVE TO FIND WHAT THE DRAWER IS DRAWING.
+      </p>
+    </div>
+    <div class="contstep1">
+      <img src="assets/validate.png" class="profileimage">
+      <p class="textstep3">
+        STEP 3 - IF THE DRAWER HAS GUESSED THE WORD TO THE DEVINER HE WIN THE GAME AND ROLES CHANGE.
+      </p>
+    </div>
+    <button class="buttonnext">NEXT</button>
+  </div>
+
+
+
+  <div class="contlogin">
+    <button class="buttongohome">return</button>
+    <div class="globlogin">
+      <div *ngIf="afAuth.authState | async as user; else showLogin">
+        <h1>Hello {{ user.displayName }}!</h1>
+        <button (click)="logout()" class="buttongooglelogout">Logout</button>
+      </div>
+      <ng-template #showLogin>
+        <p class="logintxt">Please Login :</p>
+        <button class="boutonconnection" (click)="login()">
+          <img src="assets/google.png" class="googleconnect"> SIGN IN WITH GOOGLE
+        </button>
+      </ng-template>
+    </div>
+  </div>
+
+>>>>>>> dev
 </div>
