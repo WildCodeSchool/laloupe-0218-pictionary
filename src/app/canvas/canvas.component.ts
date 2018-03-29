@@ -35,7 +35,7 @@ export class CanvasComponent implements AfterViewInit {
 
     this.captureEvents(canvasEl);
   }
-  
+
   private captureEvents(canvasEl: HTMLCanvasElement) {
     Observable
       .fromEvent(canvasEl, 'mousedown')
@@ -43,21 +43,21 @@ export class CanvasComponent implements AfterViewInit {
         return Observable
           .fromEvent(canvasEl, 'mousemove')
           .takeUntil(Observable.fromEvent(canvasEl, 'mouseup'))
-          .pairwise()
+          .pairwise();
       })
       .subscribe((res: [MouseEvent, MouseEvent]) => {
         const rect = canvasEl.getBoundingClientRect();
-  
+
         const prevPos = {
           x: res[0].clientX - rect.left,
           y: res[0].clientY - rect.top
         };
-  
+
         const currentPos = {
           x: res[1].clientX - rect.left,
           y: res[1].clientY - rect.top
         };
-  
+
         this.drawOnCanvas(prevPos, currentPos);
       });
   }
@@ -73,5 +73,4 @@ export class CanvasComponent implements AfterViewInit {
       this.cx.stroke();
     }
   }
-
 }
