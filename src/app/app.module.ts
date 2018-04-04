@@ -13,7 +13,7 @@ import { NgModule } from '@angular/core';
 @NgModule({
   declarations: [
     AppComponent,
-    HomepageComponent
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
