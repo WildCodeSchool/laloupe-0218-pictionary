@@ -1,3 +1,8 @@
 <p>
   canvas works!
 </p>
+<ul>
+  <li class="text" *ngFor="let word of random_word | async">
+    {{word.name}}
+  </li>
+</ul>

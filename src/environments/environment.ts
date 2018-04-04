@@ -6,11 +6,11 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBaRfYJ5CZGPWhGwK42FlUrXOAkTcU8vSM",
-    authDomain: "angularauth-62a23.firebaseapp.com",
-    databaseURL: "https://angularauth-62a23.firebaseio.com",
-    projectId: "angularauth-62a23",
-    storageBucket: "angularauth-62a23.appspot.com",
-    messagingSenderId: "838191329069"
+    apiKey: 'AIzaSyD7CRCqxIP65t89Mjt1g8iBU6icPROYntY',
+    authDomain: 'angularpictionary.firebaseapp.com',
+    databaseURL: 'https://angularpictionary.firebaseio.com',
+    projectId: 'angularpictionary',
+    storageBucket: 'angularpictionary.appspot.com',
+    messagingSenderId: '1083049983524'
   }
 };
