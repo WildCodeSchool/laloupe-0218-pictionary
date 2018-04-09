@@ -20,6 +20,8 @@ export class CanvasComponent implements AfterViewInit {
   @Input() public width = 500;
   @Input() public height = 500;
 
+  lines;
+
   private cx: CanvasRenderingContext2D;
 
   public ngAfterViewInit() {
@@ -37,6 +39,13 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   private captureEvents(canvasEl: HTMLCanvasElement) {
+    this.lines = [];
+    Observable
+      .fromEvent(canvasEl, 'mouseup')
+      .subscribe((res: MouseEvent) => {
+        console.log('saveeee', this.lines);
+        // firebase.update(this.lines);
+      });
     Observable
       .fromEvent(canvasEl, 'mousedown')
       .switchMap((e) => {
@@ -47,6 +56,7 @@ export class CanvasComponent implements AfterViewInit {
       })
       .subscribe((res: [MouseEvent, MouseEvent]) => {
         const rect = canvasEl.getBoundingClientRect();
+        console.log('coucou');
 
         const prevPos = {
           x: res[0].clientX - rect.left,
@@ -57,7 +67,7 @@ export class CanvasComponent implements AfterViewInit {
           x: res[1].clientX - rect.left,
           y: res[1].clientY - rect.top
         };
-
+        this.lines.push({ origin: prevPos, dest: currentPos });
         this.drawOnCanvas(prevPos, currentPos);
       });
   }

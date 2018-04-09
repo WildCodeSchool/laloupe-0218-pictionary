@@ -12,6 +12,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { AppComponent } from './app.component';
 import { CanvasComponent } from './canvas/canvas.component';
+import { PlayerCanvasComponent } from './player-canvas/player-canvas.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CanvasComponent } from './canvas/canvas.component';
     HomepageComponent,
     LoginpageComponent,
     CanvasComponent,
+    PlayerCanvasComponent,
   ],
 
   imports: [
