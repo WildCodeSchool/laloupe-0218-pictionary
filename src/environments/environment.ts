@@ -11,6 +11,6 @@ export const environment = {
     databaseURL: 'https://angularpictionary.firebaseio.com',
     projectId: 'angularpictionary',
     storageBucket: 'angularpictionary.appspot.com',
-    messagingSenderId: '1083049983524'
-  }
+    messagingSenderId: '1083049983524',
+  },
 };

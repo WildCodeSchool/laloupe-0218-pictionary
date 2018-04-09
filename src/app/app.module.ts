@@ -13,6 +13,7 @@ import { LoginpageComponent } from './loginpage/loginpage.component';
 import { AppComponent } from './app.component';
 import { CanvasComponent } from './canvas/canvas.component';
 import { MatchMakingComponent } from './match-making/match-making.component';
+import * as jQuery from 'jquery';
 
 @NgModule({
   declarations: [
@@ -28,10 +29,9 @@ import { MatchMakingComponent } from './match-making/match-making.component';
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
-    routes
+    routes,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule { }
