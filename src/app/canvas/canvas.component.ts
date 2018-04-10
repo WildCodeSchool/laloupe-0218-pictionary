@@ -2,11 +2,18 @@ import {
   Component, Input, ElementRef, AfterViewInit, ViewChild
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase/app';
+import { environment } from '../../environments/environment';
 
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/operator/pairwise';
 import 'rxjs/add/operator/switchMap';
+
+firebase.initializeApp(environment);
+firebase.auth().languageCode = 'fr';
+
+const db = firebase.database();
 
 @Component({
   selector: 'app-canvas',
@@ -44,7 +51,7 @@ export class CanvasComponent implements AfterViewInit {
       .fromEvent(canvasEl, 'mouseup')
       .subscribe((res: MouseEvent) => {
         console.log('saveeee', this.lines);
-        // firebase.update(this.lines);
+        db.ref().update('canvas/BTqlfViImuBKcvF9kgjR/' + this.lines);
       });
     Observable
       .fromEvent(canvasEl, 'mousedown')
@@ -56,7 +63,6 @@ export class CanvasComponent implements AfterViewInit {
       })
       .subscribe((res: [MouseEvent, MouseEvent]) => {
         const rect = canvasEl.getBoundingClientRect();
-        console.log('coucou');
 
         const prevPos = {
           x: res[0].clientX - rect.left,
