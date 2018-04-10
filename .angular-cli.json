@@ -1,7 +1,15 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
+<<<<<<< HEAD
     "name": "angular1"
+=======
+<<<<<<< HEAD
+    "name": "angularp"
+=======
+    "name": "angul"
+>>>>>>> origin/dev
+>>>>>>> home
   },
   "apps": [
     {
@@ -21,7 +29,15 @@
       "styles": [
         "styles.css"
       ],
+<<<<<<< HEAD
       "scripts": [],
+=======
+<<<<<<< HEAD
+      "scripts": ["../node_modules/jquery/dist/jquery.min.js"],
+=======
+      "scripts": [],
+>>>>>>> origin/dev
+>>>>>>> home
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

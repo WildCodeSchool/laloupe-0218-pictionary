@@ -1,6 +1,10 @@
 import { AppPage } from './app.po';
 
+<<<<<<< HEAD
 describe('angular1 App', () => {
+=======
+describe('angularp App', () => {
+>>>>>>> home
   let page: AppPage;
 
   beforeEach(() => {
