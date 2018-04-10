@@ -6,11 +6,11 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-loginpage',
   templateUrl: './loginpage.component.html',
-  styleUrls: ['./loginpage.component.css']
+  styleUrls: ['./loginpage.component.css'],
 })
 export class LoginpageComponent implements OnInit {
 
-  title = "pictionary";
+  title = 'pictionary';
   constructor(public afAuth: AngularFireAuth) {
   }
   login() {

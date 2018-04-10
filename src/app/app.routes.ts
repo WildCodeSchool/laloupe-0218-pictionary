@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
+
 import { AppComponent } from './app.component';
 import { CanvasComponent } from './canvas/canvas.component';
 import { MatchMakingComponent } from './match-making/match-making.component';
