@@ -1,0 +1,26 @@
+/* vide */
+
+.contmatch{
+    position: relative;
+}
+
+.logomatch{
+    width:  40%;
+    height:  auto;
+    margin-left:  50%;
+    transform: translate(-50%);
+    z-index: 100;
+    position: relative;
+}
+.match{
+    width: 80%;
+    height: auto;
+    margin-left: 50%;
+    transform: translate(-50%);
+    z-index: 90;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 100px;
+    padding-bottom: 75px;
+}

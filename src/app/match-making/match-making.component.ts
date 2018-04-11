@@ -53,7 +53,6 @@ export class MatchMakingComponent implements OnInit {
       }
 
       const room = new Room();
-      /* room.players = {}; */
       room.players = [player];
 
       room.players[this.authService.authId] = player;
