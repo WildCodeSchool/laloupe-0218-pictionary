@@ -8,6 +8,8 @@ import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/operator/pairwise';
 import 'rxjs/add/operator/switchMap';
 
+import { environment } from '../../environments/environment';
+
 @Component({
   selector: 'app-canvas',
   template: '<canvas #canvas></canvas>',
