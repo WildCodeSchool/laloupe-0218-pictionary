@@ -12,7 +12,7 @@ import { MatchMakingComponent } from './match-making/match-making.component';
 export const router: Routes = [
     { path: '', redirectTo: 'app', pathMatch: 'full' },
     { path: '', component: HomepageComponent },
-    { path: 'canvas/:id/:username', component: CanvasComponent },
+    { path: 'canvas', component: CanvasComponent },
     { path: 'loginpage', component: LoginpageComponent },
     { path: 'match-making', component: MatchMakingComponent },
 ];

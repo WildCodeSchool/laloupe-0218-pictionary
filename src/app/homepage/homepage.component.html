@@ -21,9 +21,17 @@
         STEP 3 - IF THE DRAWER HAS GUESSED THE WORD TO THE DEVINER HE WIN THE GAME AND ROLES CHANGE.
       </p>
     </div>
-    <h1>
-      History
-    </h1>
-    <button class="buttonnext" (click)="login()">Play</button>
+
+    <div *ngIf="afAuth.authState | async as user; else showLogin">
+      <h1>Hello {{ user.displayName }}!</h1>
+      <button (click)="logout()" class="buttongooglelogout">Logout</button>
+    </div>
+    <ng-template #showLogin>
+      <button class="boutonconnection" (click)="login()">
+        <img src="assets/google.png" class="googleconnect"> SIGN IN WITH GOOGLE
+      </button>
+    </ng-template>
+    <button class="buttonnext" (click)="match-making()" routerLink="/match-making">Play</button>
+
   </div>
 </div>

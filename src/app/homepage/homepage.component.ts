@@ -21,8 +21,8 @@ export class HomepageComponent implements OnInit {
   }
   login() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    this.router.navigate(['loginpage']);
-
+    if (this.afAuth.auth.currentUser) {
+    }
   }
   logout() {
     this.afAuth.auth.signOut();

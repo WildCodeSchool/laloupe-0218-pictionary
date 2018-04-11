@@ -13,7 +13,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { CanvasComponent } from './canvas/canvas.component';
 import { MatchMakingComponent } from './match-making/match-making.component';
-import * as jQuery from 'jquery';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import * as jQuery from 'jquery';
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     routes,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
