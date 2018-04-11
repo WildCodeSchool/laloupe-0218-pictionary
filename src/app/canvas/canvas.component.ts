@@ -1,19 +1,29 @@
 import {
   Component, Input, ElementRef, AfterViewInit, ViewChild,
 } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/operator/pairwise';
 import 'rxjs/add/operator/switchMap';
 
 import { environment } from '../../environments/environment';
+import * as firebase from 'firebase/app';
+
+// firebase.initializeApp(environment);
+// firebase.auth().languageCode = 'fr';
+// const db = firebase.database();
 
 @Component({
   selector: 'app-canvas',
   template: '<canvas #canvas></canvas>',
-  styles: ['canvas { border: 1px solid #000; }'],
+  styles: ['canvas { border: 1px solid #000; background-color: white; transform: translate(75%) }'],
 })
 export class CanvasComponent implements AfterViewInit {
 
@@ -21,6 +31,8 @@ export class CanvasComponent implements AfterViewInit {
 
   @Input() public width = 500;
   @Input() public height = 500;
+
+  lines;
 
   private cx: CanvasRenderingContext2D;
 
@@ -39,6 +51,7 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   private captureEvents(canvasEl: HTMLCanvasElement) {
+    this.lines = [];
     Observable
       .fromEvent(canvasEl, 'mousedown')
       .switchMap((e) => {
@@ -49,7 +62,7 @@ export class CanvasComponent implements AfterViewInit {
       })
       .subscribe((res: [MouseEvent, MouseEvent]) => {
         const rect = canvasEl.getBoundingClientRect();
-
+        console.log('coucou');
         const prevPos = {
           x: res[0].clientX - rect.left,
           y: res[0].clientY - rect.top,
@@ -59,8 +72,14 @@ export class CanvasComponent implements AfterViewInit {
           x: res[1].clientX - rect.left,
           y: res[1].clientY - rect.top,
         };
-
+        this.lines.push({ origin: prevPos, dest: currentPos });
         this.drawOnCanvas(prevPos, currentPos);
+      });
+    Observable
+      .fromEvent(canvasEl, 'mouseup')
+      .subscribe((res: MouseEvent) => {
+        console.log('saveeee', this.lines);
+        //        db.ref().update('Canvas/BTqlfViImuBKcvF9kgjR/' + this.lines);
       });
   }
 
