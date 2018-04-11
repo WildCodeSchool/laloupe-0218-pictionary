@@ -22,16 +22,16 @@
       </p>
     </div>
 
-    <div *ngIf="afAuth.authState | async as user; else showLogin">
-      <h1>Hello {{ user.displayName }}!</h1>
+    <div *ngIf="authService.name; else showLogin">
+      <h1>Hello {{ authService.name }}!</h1>
       <button (click)="logout()" class="buttongooglelogout">Logout</button>
+    <button class="buttonnext" routerLink="/match-making">Play</button>      
     </div>
     <ng-template #showLogin>
       <button class="boutonconnection" (click)="login()">
         <img src="assets/google.png" class="googleconnect"> SIGN IN WITH GOOGLE
       </button>
     </ng-template>
-    <button class="buttonnext" routerLink="/match-making">Play</button>
 
   </div>
 </div>
