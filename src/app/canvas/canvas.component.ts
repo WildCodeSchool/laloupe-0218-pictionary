@@ -4,7 +4,7 @@ import {
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 
 
 import { Observable } from 'rxjs/Observable';
@@ -15,26 +15,49 @@ import 'rxjs/add/operator/switchMap';
 
 import { environment } from '../../environments/environment';
 import * as firebase from 'firebase/app';
+import { AuthService } from '../auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { Room } from '../match-making/models/room';
 
-// firebase.initializeApp(environment);
-// firebase.auth().languageCode = 'fr';
-// const db = firebase.database();
 
 @Component({
   selector: 'app-canvas',
-  template: '<canvas #canvas></canvas>',
-  styles: ['canvas { border: 1px solid #000; background-color: white; transform: translate(75%) }'],
+  templateUrl: './canvas.component.html',
+  styleUrls: ['./canvas.component.css']
 })
 export class CanvasComponent implements AfterViewInit {
+  room: any;
+  lines;
 
+  private cx: CanvasRenderingContext2D;
+  roomId: any;
   @ViewChild('canvas') public canvas: ElementRef;
 
   @Input() public width = 500;
   @Input() public height = 500;
 
-  lines;
+  constructor(private authService: AuthService,
+    private route: ActivatedRoute,
+    private db: AngularFirestore) { }
 
-  private cx: CanvasRenderingContext2D;
+  ngOnInit() {
+    this.lines = [];
+    
+    this.roomId = this.route.snapshot.paramMap.get('id');
+    this.db
+      .doc<Room>('rooms/' + this.roomId)
+      .valueChanges()
+      .subscribe((room) => {
+        this.room = room;
+        for (let index = 0; index < this.room.canvas.length; index++) {
+          const element = this.room.canvas[index];
+          this.lines.push({ origin: element.origin, dest: element.dest });
+          this.drawOnCanvas(element.origin, element.dest);
+          
+        }
+        console.log(this.room);
+      })
+  }
 
   public ngAfterViewInit() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
@@ -48,10 +71,11 @@ export class CanvasComponent implements AfterViewInit {
     this.cx.strokeStyle = '#000';
 
     this.captureEvents(canvasEl);
+    
+    this.roomId = this.route.snapshot.paramMap.get('id');
   }
 
   private captureEvents(canvasEl: HTMLCanvasElement) {
-    this.lines = [];
     Observable
       .fromEvent(canvasEl, 'mousedown')
       .switchMap((e) => {
@@ -79,7 +103,8 @@ export class CanvasComponent implements AfterViewInit {
       .fromEvent(canvasEl, 'mouseup')
       .subscribe((res: MouseEvent) => {
         console.log('saveeee', this.lines);
-        //        db.ref().update('Canvas/BTqlfViImuBKcvF9kgjR/' + this.lines);
+        this.room.canvas = this.lines;
+        this.updateRoom();
       });
   }
 
@@ -95,4 +120,7 @@ export class CanvasComponent implements AfterViewInit {
     }
   }
 
+  updateRoom() {
+    this.db.doc<Room>('rooms/' + this.roomId).update(this.room);
+  }
 }
