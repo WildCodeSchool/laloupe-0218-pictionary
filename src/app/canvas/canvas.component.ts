@@ -43,10 +43,7 @@ export class CanvasComponent implements AfterViewInit {
 
   ngOnInit() {
     this.lines = [];
-<<<<<<< HEAD
     let index = 0;
-=======
->>>>>>> 60ebfd1e88a1dad260b24598cfc395d80e7e1f34
 
     this.roomId = this.route.snapshot.paramMap.get('id');
     this.db
@@ -54,15 +51,12 @@ export class CanvasComponent implements AfterViewInit {
       .valueChanges()
       .subscribe((room) => {
         this.room = room;
+
         while (index < this.room.canvas.length) {
           const element = this.room.canvas[index];
           this.lines.push({ origin: element.origin, dest: element.dest });
           this.drawOnCanvas(element.origin, element.dest);
-<<<<<<< HEAD
           index += 1;
-=======
-
->>>>>>> 60ebfd1e88a1dad260b24598cfc395d80e7e1f34
         }
         /*         for (let index = 0; index < this.room.canvas.length; index++) {
                   const element = this.room.canvas[index];
