@@ -6,7 +6,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 
-
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
@@ -19,7 +18,6 @@ import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Room } from '../match-making/models/room';
 import { Title } from '@angular/platform-browser';
-
 
 @Component({
   selector: 'app-canvas',
@@ -44,7 +42,6 @@ export class CanvasComponent implements AfterViewInit {
   ngOnInit() {
     this.lines = [];
     let index = 0;
-
     this.roomId = this.route.snapshot.paramMap.get('id');
     this.db
       .doc<Room>('rooms/' + this.roomId)
@@ -79,6 +76,7 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   private captureEvents(canvasEl: HTMLCanvasElement) {
+
     Observable
       .fromEvent(canvasEl, 'mousedown')
       .switchMap((e) => {
@@ -89,7 +87,6 @@ export class CanvasComponent implements AfterViewInit {
       })
       .subscribe((res: [MouseEvent, MouseEvent]) => {
         const rect = canvasEl.getBoundingClientRect();
-        console.log('coucou');
         const prevPos = {
           x: res[0].clientX - rect.left,
           y: res[0].clientY - rect.top,
@@ -105,7 +102,6 @@ export class CanvasComponent implements AfterViewInit {
     Observable
       .fromEvent(canvasEl, 'mouseup')
       .subscribe((res: MouseEvent) => {
-        console.log('saveeee', this.lines);
         this.room.canvas = this.lines;
         this.updateRoom();
       });
