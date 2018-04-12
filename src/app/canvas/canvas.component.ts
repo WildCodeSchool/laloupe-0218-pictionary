@@ -58,12 +58,6 @@ export class CanvasComponent implements AfterViewInit {
           this.drawOnCanvas(element.origin, element.dest);
           index += 1;
         }
-        /*         for (let index = 0; index < this.room.canvas.length; index++) {
-                  const element = this.room.canvas[index];
-                  this.lines.push({ origin: element.origin, dest: element.dest });
-                  this.drawOnCanvas(element.origin, element.dest);
-
-                } */
         console.log(this.room);
       });
   }
