@@ -18,6 +18,8 @@ import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Room } from '../match-making/models/room';
 import { Title } from '@angular/platform-browser';
+import { timer } from 'rxjs/observable/timer';
+import 'rxjs/add/observable/interval';
 
 @Component({
   selector: 'app-canvas',
@@ -42,6 +44,19 @@ export class CanvasComponent implements AfterViewInit {
   ngOnInit() {
     this.lines = [];
     let index = 0;
+    /*   const timer = 60;
+  
+      if (Object.keys(this.room.players).length === 2) {
+        Observable.interval(1000)
+        .take(61)
+        .subscribe((n) => {
+          console.log(timer - n);
+          if (n === timer) {
+            console.log('perdue');
+          }
+        }); 
+      } */
+
     this.roomId = this.route.snapshot.paramMap.get('id');
     this.db
       .doc<Room>('rooms/' + this.roomId)
@@ -75,8 +90,22 @@ export class CanvasComponent implements AfterViewInit {
     this.roomId = this.route.snapshot.paramMap.get('id');
   }
 
-  private captureEvents(canvasEl: HTMLCanvasElement) {
+  isMyTurn(): boolean {
+    if ((this.room.players[0].id === this.authService.authId && this.room.turn === 0) ||
+      (this.room.players[1].id === this.authService.authId && this.room.turn === 1)) {
+      return true;
+    }
+    return false;
+  }
 
+  changeTurn() {
+    this.room.turn = this.room.turn === 0 ? 1 : 0;
+    this.db
+      .doc<Room>('rooms/' + this.roomId)
+      .set(this.room);
+  }
+
+  private captureEvents(canvasEl: HTMLCanvasElement) {
     Observable
       .fromEvent(canvasEl, 'mousedown')
       .switchMap((e) => {
@@ -85,8 +114,11 @@ export class CanvasComponent implements AfterViewInit {
           .takeUntil(Observable.fromEvent(canvasEl, 'mouseup'))
           .pairwise();
       })
+      .filter(() => {
+        return this.isMyTurn();
+      })
       .subscribe((res: [MouseEvent, MouseEvent]) => {
-        const rect = canvasEl.getBoundingClientRect();        
+        const rect = canvasEl.getBoundingClientRect();
         const prevPos = {
           x: res[0].clientX - rect.left,
           y: res[0].clientY - rect.top,
@@ -123,7 +155,5 @@ export class CanvasComponent implements AfterViewInit {
     this.db.doc<Room>('rooms/' + this.roomId).update(this.room);
   }
 }
-
-
 
 /* fin ramdomword */
