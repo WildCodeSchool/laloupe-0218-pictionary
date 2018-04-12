@@ -6,7 +6,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 
-
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
@@ -19,11 +18,10 @@ import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Room } from '../match-making/models/room';
 
-
 @Component({
   selector: 'app-canvas',
   templateUrl: './canvas.component.html',
-  styleUrls: ['./canvas.component.css']
+  styleUrls: ['./canvas.component.css'],
 })
 export class CanvasComponent implements AfterViewInit {
   room: any;
@@ -37,26 +35,25 @@ export class CanvasComponent implements AfterViewInit {
   @Input() public height = 500;
 
   constructor(private authService: AuthService,
-    private route: ActivatedRoute,
-    private db: AngularFirestore) { }
+              private route: ActivatedRoute,
+              private db: AngularFirestore) { }
 
   ngOnInit() {
     this.lines = [];
-    
     this.roomId = this.route.snapshot.paramMap.get('id');
     this.db
       .doc<Room>('rooms/' + this.roomId)
       .valueChanges()
       .subscribe((room) => {
         this.room = room;
-        for (let index = 0; index < this.room.canvas.length; index++) {
+        for (let index = 0; index < this.room.canvas.length; index += 1) {
           const element = this.room.canvas[index];
           this.lines.push({ origin: element.origin, dest: element.dest });
           this.drawOnCanvas(element.origin, element.dest);
-          
+
         }
         console.log(this.room);
-      })
+      });
   }
 
   public ngAfterViewInit() {
@@ -71,11 +68,12 @@ export class CanvasComponent implements AfterViewInit {
     this.cx.strokeStyle = '#000';
 
     this.captureEvents(canvasEl);
-    
+
     this.roomId = this.route.snapshot.paramMap.get('id');
   }
 
   private captureEvents(canvasEl: HTMLCanvasElement) {
+
     Observable
       .fromEvent(canvasEl, 'mousedown')
       .switchMap((e) => {
