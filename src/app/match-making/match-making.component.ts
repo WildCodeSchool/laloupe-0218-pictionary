@@ -40,13 +40,14 @@ export class MatchMakingComponent implements OnInit {
       const snapshot = roomsCollection.snapshotChanges().take(1).subscribe((snapshot) => {
         const player = new Player();
         player.name = this.authService.name;
+        player.id = this.authService.authId;
 
         for (const snapshotItem of snapshot) {
           const roomId = snapshotItem.payload.doc.id;
           const room = snapshotItem.payload.doc.data() as Room;
 
           if (Object.keys(room.players).length === 1) {
-            room.players[this.authService.authId] = player;
+            room.players[1] = player;
             this.db.doc('rooms/' + roomId).update(JSON.parse(JSON.stringify(room)));
             this.router.navigate(['canvas', roomId]);
             return;
@@ -55,7 +56,8 @@ export class MatchMakingComponent implements OnInit {
 
         const room = new Room();
         room.players = {};
-        room.players[this.authService.authId] = player;
+        room.players[0] = player;
+        room.turn = 0;
         this.db.collection('rooms')
           .add(JSON.parse(JSON.stringify(room)))
           .then((doc) => {
