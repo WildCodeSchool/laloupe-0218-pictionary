@@ -4,4 +4,5 @@ export class Room {
   players: {};
   canvas: Position[];
   turn: number;
+  randomWord: string;
 }

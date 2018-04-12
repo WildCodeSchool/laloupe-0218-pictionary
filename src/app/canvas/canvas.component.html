@@ -1,8 +1,15 @@
 <div class="contmatch">
   <div class="match">
     <img src="assets/pictionary.png" class="logomatch">
+    <button (click)="changeTurn()">Change turn</button>
+    <div *ngIf="!room.turn">{{room.randomWord}}</div>
   </div>
-    
+
+  <form *ngIf="room.turn">
+    Answers:
+    <input type="text" name="Answer">
+    <input type="submit" value="submit">
+  </form>
+
   <canvas #canvas></canvas>
-  <button (click)="changeTurn()">Change turn</button>
 </div>

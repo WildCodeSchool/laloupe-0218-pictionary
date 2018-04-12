@@ -58,6 +58,9 @@ export class MatchMakingComponent implements OnInit {
         room.players = {};
         room.players[0] = player;
         room.turn = 0;
+        const wordList = ['ice', 'boy', 'bottle', 'mouse'];
+        const randomId = Math.round(Math.random() * wordList.length);
+        room.randomWord = wordList[randomId];
         this.db.collection('rooms')
           .add(JSON.parse(JSON.stringify(room)))
           .then((doc) => {

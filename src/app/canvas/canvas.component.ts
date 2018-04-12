@@ -27,7 +27,7 @@ import 'rxjs/add/observable/interval';
   styleUrls: ['./canvas.component.css'],
 })
 export class CanvasComponent implements AfterViewInit {
-  room: any;
+  room: Room;
   lines;
 
   private cx: CanvasRenderingContext2D;
