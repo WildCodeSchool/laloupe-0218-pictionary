@@ -6,6 +6,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
@@ -18,6 +19,7 @@ import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Room } from '../match-making/models/room';
 import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-canvas',
@@ -42,19 +44,26 @@ export class CanvasComponent implements AfterViewInit {
   ngOnInit() {
     this.lines = [];
     let index = 0;
+
     this.roomId = this.route.snapshot.paramMap.get('id');
     this.db
       .doc<Room>('rooms/' + this.roomId)
       .valueChanges()
       .subscribe((room) => {
         this.room = room;
-
+        
         while (index < this.room.canvas.length) {
           const element = this.room.canvas[index];
           this.lines.push({ origin: element.origin, dest: element.dest });
           this.drawOnCanvas(element.origin, element.dest);
           index += 1;
         }
+        /*         for (let index = 0; index < this.room.canvas.length; index++) {
+                  const element = this.room.canvas[index];
+                  this.lines.push({ origin: element.origin, dest: element.dest });
+                  this.drawOnCanvas(element.origin, element.dest);
+
+                } */
         console.log(this.room);
       });
   }
@@ -76,7 +85,6 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   private captureEvents(canvasEl: HTMLCanvasElement) {
-
     Observable
       .fromEvent(canvasEl, 'mousedown')
       .switchMap((e) => {
@@ -87,6 +95,7 @@ export class CanvasComponent implements AfterViewInit {
       })
       .subscribe((res: [MouseEvent, MouseEvent]) => {
         const rect = canvasEl.getBoundingClientRect();
+        console.log('coucou');
         const prevPos = {
           x: res[0].clientX - rect.left,
           y: res[0].clientY - rect.top,
@@ -102,6 +111,7 @@ export class CanvasComponent implements AfterViewInit {
     Observable
       .fromEvent(canvasEl, 'mouseup')
       .subscribe((res: MouseEvent) => {
+        console.log('saveeee', this.lines);
         this.room.canvas = this.lines;
         this.updateRoom();
       });
@@ -124,6 +134,9 @@ export class CanvasComponent implements AfterViewInit {
   }
 }
 
+let wordList = ['ice','boy','dog','volcan','girl','cat','fire','phone','bottle','mouse'];
+let numberRamdomForWordList = Math.round(Math.random() * wordList.length);
+console.log(wordList[numberRamdomForWordList]);
 
 
 /* fin ramdomword */
