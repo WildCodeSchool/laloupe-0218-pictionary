@@ -1,13 +1,6 @@
 <div class="contmatch">
   <div class="match">
     <img src="assets/pictionary.png" class="logomatch">
-    <div *ngIf='isMyTurn(); else elseBlock'>
-      <p>c'est ton tour</p>
-    </div>
-
-    <div #elseBlock>
-      <p>c'est pas ton tour</p>
-    </div>
   </div>
   <canvas #canvas></canvas>
 </div>

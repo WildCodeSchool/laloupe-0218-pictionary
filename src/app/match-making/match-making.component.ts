@@ -54,7 +54,7 @@ export class MatchMakingComponent implements OnInit {
 
       const room = new Room();
       room.players = [player];
-      room.turn = 1;
+      room.turn = 0;
       room.players[this.authService.authId] = player;
       this.db.collection('rooms')
         .add(JSON.parse(JSON.stringify(room)))

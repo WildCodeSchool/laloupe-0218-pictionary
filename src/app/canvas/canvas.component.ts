@@ -17,6 +17,7 @@ import * as firebase from 'firebase/app';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Room } from '../match-making/models/room';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-canvas',
@@ -40,17 +41,19 @@ export class CanvasComponent implements AfterViewInit {
 
   ngOnInit() {
     this.lines = [];
+    let index = 0;
     this.roomId = this.route.snapshot.paramMap.get('id');
     this.db
       .doc<Room>('rooms/' + this.roomId)
       .valueChanges()
       .subscribe((room) => {
         this.room = room;
-        for (let index = 0; index < this.room.canvas.length; index += 1) {
+
+        while (index < this.room.canvas.length) {
           const element = this.room.canvas[index];
           this.lines.push({ origin: element.origin, dest: element.dest });
           this.drawOnCanvas(element.origin, element.dest);
-
+          index += 1;
         }
         console.log(this.room);
       });
@@ -122,3 +125,7 @@ export class CanvasComponent implements AfterViewInit {
     this.db.doc<Room>('rooms/' + this.roomId).update(this.room);
   }
 }
+
+
+
+/* fin ramdomword */
