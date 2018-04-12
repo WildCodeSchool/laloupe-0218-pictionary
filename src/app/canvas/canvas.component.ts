@@ -23,7 +23,7 @@ import { Room } from '../match-making/models/room';
 @Component({
   selector: 'app-canvas',
   templateUrl: './canvas.component.html',
-  styleUrls: ['./canvas.component.css']
+  styleUrls: ['./canvas.component.css'],
 })
 export class CanvasComponent implements AfterViewInit {
   room: any;
@@ -37,26 +37,33 @@ export class CanvasComponent implements AfterViewInit {
   @Input() public height = 500;
 
   constructor(private authService: AuthService,
-    private route: ActivatedRoute,
-    private db: AngularFirestore) { }
+              private route: ActivatedRoute,
+              private db: AngularFirestore) { }
 
   ngOnInit() {
     this.lines = [];
-    
+    let index = 0;
+
     this.roomId = this.route.snapshot.paramMap.get('id');
     this.db
       .doc<Room>('rooms/' + this.roomId)
       .valueChanges()
       .subscribe((room) => {
         this.room = room;
-        for (let index = 0; index < this.room.canvas.length; index++) {
+        while (index < this.room.canvas.length) {
           const element = this.room.canvas[index];
           this.lines.push({ origin: element.origin, dest: element.dest });
           this.drawOnCanvas(element.origin, element.dest);
-          
+          index += 1;
         }
+        /*         for (let index = 0; index < this.room.canvas.length; index++) {
+                  const element = this.room.canvas[index];
+                  this.lines.push({ origin: element.origin, dest: element.dest });
+                  this.drawOnCanvas(element.origin, element.dest);
+
+                } */
         console.log(this.room);
-      })
+      });
   }
 
   public ngAfterViewInit() {
@@ -71,7 +78,7 @@ export class CanvasComponent implements AfterViewInit {
     this.cx.strokeStyle = '#000';
 
     this.captureEvents(canvasEl);
-    
+
     this.roomId = this.route.snapshot.paramMap.get('id');
   }
 
