@@ -86,8 +86,7 @@ export class CanvasComponent implements AfterViewInit {
           .pairwise();
       })
       .subscribe((res: [MouseEvent, MouseEvent]) => {
-        const rect = canvasEl.getBoundingClientRect();
-        console.log('coucou');
+        const rect = canvasEl.getBoundingClientRect();        
         const prevPos = {
           x: res[0].clientX - rect.left,
           y: res[0].clientY - rect.top,
@@ -103,7 +102,6 @@ export class CanvasComponent implements AfterViewInit {
     Observable
       .fromEvent(canvasEl, 'mouseup')
       .subscribe((res: MouseEvent) => {
-        console.log('saveeee', this.lines);
         this.room.canvas = this.lines;
         this.updateRoom();
       });
