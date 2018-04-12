@@ -1,6 +1,10 @@
 <div class="contmatch">
   <div class="match">
     <img src="assets/pictionary.png" class="logomatch">
+    <!-- <div *ngFor="let word of wordLists">{{wordLists.word}}</div> -->
   </div>
   <canvas #canvas></canvas>
+  
 </div>
+
+<div *ngFor="let wordList of wordLists">{{wordList.words}}</div>

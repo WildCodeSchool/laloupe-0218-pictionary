@@ -24,6 +24,8 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './canvas.component.html',
   styleUrls: ['./canvas.component.css'],
 })
+
+
 export class CanvasComponent implements AfterViewInit {
   room: any;
   lines;
@@ -36,8 +38,8 @@ export class CanvasComponent implements AfterViewInit {
   @Input() public height = 500;
 
   constructor(private authService: AuthService,
-              private route: ActivatedRoute,
-              private db: AngularFirestore) { }
+    private route: ActivatedRoute,
+    private db: AngularFirestore) { }
 
   ngOnInit() {
     this.lines = [];
@@ -86,7 +88,7 @@ export class CanvasComponent implements AfterViewInit {
           .pairwise();
       })
       .subscribe((res: [MouseEvent, MouseEvent]) => {
-        const rect = canvasEl.getBoundingClientRect();        
+        const rect = canvasEl.getBoundingClientRect();
         const prevPos = {
           x: res[0].clientX - rect.left,
           y: res[0].clientY - rect.top,
@@ -122,8 +124,9 @@ export class CanvasComponent implements AfterViewInit {
   updateRoom() {
     this.db.doc<Room>('rooms/' + this.roomId).update(this.room);
   }
+  
+  wordLists = [{ words: 'ice' }, { words: 'boy' }, { words: 'dog' }, { words: 'volcan' },{ words: 'girl'},{ words: 'bottle' },{ words: 'phone' }];
+  getRamdomWord(){
+    Math.round(Math.random() * this.wordLists.length)
+  }
 }
-
-
-
-/* fin ramdomword */
