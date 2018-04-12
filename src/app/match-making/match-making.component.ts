@@ -6,6 +6,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Rx';
 import { Router } from '@angular/router';
+import { CanvasComponent } from '../canvas/canvas.component'
 
 @Component({
   selector: 'app-match-making',
@@ -32,6 +33,16 @@ export class MatchMakingComponent implements OnInit {
   ngOnDestroy() {
     this.authSubscription.unsubscribe();
   }
+  /* ramdomword */
+  ramdomWord() {
+    const wordsCollection = this.db.collection('ramdom_word');
+    const snapshot = wordsCollection.snapshotChanges().take(1).subscribe((snapshot) => {
+console.log(snapshot);
+
+      // console.log(Math.random() * Object.keys(snapshot).length);
+
+    });
+  };
 
   getRooms() {
     const roomsCollection = this.db.collection<Room>('rooms');
@@ -54,8 +65,10 @@ export class MatchMakingComponent implements OnInit {
 
       const room = new Room();
       room.players = [player];
+      room.canvas = [];
 
       room.players[this.authService.authId] = player;
+      this.ramdomWord();
       this.db.collection('rooms')
         .add(JSON.parse(JSON.stringify(room)))
         .then((doc) => {
