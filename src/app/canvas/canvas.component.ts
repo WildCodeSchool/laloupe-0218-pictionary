@@ -21,6 +21,8 @@ import { Title } from '@angular/platform-browser';
 import { timer } from 'rxjs/observable/timer';
 import 'rxjs/add/observable/interval';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-canvas',
   templateUrl: './canvas.component.html',
@@ -40,8 +42,8 @@ export class CanvasComponent implements AfterViewInit {
   @Input() public height = 400;
 
   constructor(private authService: AuthService,
-              private route: ActivatedRoute,
-              private db: AngularFirestore) { }
+    private route: ActivatedRoute,
+    private db: AngularFirestore) { }
 
   ngOnInit() {
     this.lines = [];
@@ -66,7 +68,7 @@ export class CanvasComponent implements AfterViewInit {
       .subscribe((room) => {
         this.room = room;
 
-        while (index < this.room.canvas.length) {
+        while (this.room.canvas && index < this.room.canvas.length) {
           const element = this.room.canvas[index];
           this.lines.push({ origin: element.origin, dest: element.dest });
           this.drawOnCanvas(element.origin, element.dest);
