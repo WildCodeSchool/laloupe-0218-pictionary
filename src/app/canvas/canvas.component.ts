@@ -22,6 +22,7 @@ import { timer } from 'rxjs/observable/timer';
 import 'rxjs/add/observable/interval';
 
 import { Router } from '@angular/router';
+import { router } from '../app.routes';
 
 @Component({
   selector: 'app-canvas',
@@ -43,6 +44,7 @@ export class CanvasComponent implements AfterViewInit {
 
   constructor(private authService: AuthService,
     private route: ActivatedRoute,
+    private router: Router,
     private db: AngularFirestore) { }
 
   ngOnInit() {
@@ -67,6 +69,15 @@ export class CanvasComponent implements AfterViewInit {
       .valueChanges()
       .subscribe((room) => {
         this.room = room;
+        console.log(this.me);
+        console.log(this.opponent);
+        if (this.me.win) {
+          alert('Congratulations ! You find the word !');
+          this.router.navigate(['']);
+        } else if (this.opponent.win) {
+          alert('Congratulations ! the other player has find the word !');
+          this.router.navigate(['']);
+        }
 
         while (this.room.canvas && index < this.room.canvas.length) {
           const element = this.room.canvas[index];
@@ -92,6 +103,29 @@ export class CanvasComponent implements AfterViewInit {
     this.captureEvents(canvasEl);
 
     this.roomId = this.route.snapshot.paramMap.get('id');
+  }
+
+  get me() {
+    if ((this.room.players[0].id === this.authService.authId)) {
+      return this.room.players[0];
+    }
+    return this.room.players[1];
+  }
+
+  get opponent() {
+    if ((this.room.players[0].id === this.authService.authId)) {
+      return this.room.players[1];
+    }
+    return this.room.players[0];
+  }
+
+  checkWord(param){
+    let inputValue = (<HTMLInputElement>document.getElementById('mot')).value;
+
+    if(inputValue === this.room.randomWord) {
+      this.me.win = true;
+      this.updateRoom();
+    }
   }
 
   isMyTurn(): boolean {
