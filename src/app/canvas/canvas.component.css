@@ -1,4 +1,4 @@
-canvas { border: 1px solid #000; background-color: white; transform: translate(75%) }
+canvas { border: 4px solid #295ea3; background-color: white; }
 
 .contmatch {
   position: relative;
@@ -8,9 +8,10 @@ canvas { border: 1px solid #000; background-color: white; transform: translate(7
   width: 40%;
   height: auto;
   margin-left: 50%;
-  transform: translate(-50%);
+  transform: translate(-60%);
   z-index: 100;
   position: relative;
+  margin-top:20px;
 }
 
 .match {
@@ -22,6 +23,50 @@ canvas { border: 1px solid #000; background-color: white; transform: translate(7
   background-color: white;
   border-radius: 10px;
   text-align: center;
-  margin-bottom: 100px;
-  padding-bottom: 75px;
+  padding-bottom: 125px;
+  margin-top:150px
+}
+
+.draw{
+  position: relative;
+  left:0;
+  top:50px;
+  border-radius: 10px;
+}
+
+.motadeviner{
+  position: absolute;
+  right:100px;
+  top:50%;
+  background-color:#295ea3;
+  color:white;
+  font-family: 'Acme', sans-serif;
+  font-weight:bold;
+  padding:10px;
+  border-radius:5px;
+}
+
+.boutonturn{
+  position: absolute;
+  right:15px;
+  bottom:15px;
+  background-color:#295ea3;
+  color:white;
+  font-family: 'Acme', sans-serif;
+  font-weight:bold;
+  padding:10px;
+  border-radius:5px;
+  border:none;
+}
+
+.formword{
+  position:absolute;
+  top:50%;
+  right:100px;
+  background-color: #295ea3;
+  color:white;
+  padding:7px;
+  border-radius:5px;
+  font-family: 'Acme', sans-serif;
+
 }
