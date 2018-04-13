@@ -1,0 +1,75 @@
+/* You can add global styles to this file, and also import other style files */
+
+body{
+    background-color:rgb(72, 144, 211);
+}
+
+/* debut de homepage */
+
+.logohome{
+    width:40%;
+    height:auto;
+    margin-left:50%;
+    transform:translate(-50%);
+    z-index:100;
+    position: relative;
+}
+
+.conthome{
+    width:80%;
+    height:auto;
+    margin-left:50%;
+    transform:translate(-50%);
+    z-index:90;
+    margin-top:-40px;
+    background-color:white;
+    border-radius:10px;
+    text-align:center;
+}
+
+.titlehome{
+    padding-top: 60px;
+    padding-bottom: 0px;
+    font-weight:bold;
+    font-size:25px;
+    font-family:Arial;
+    font-family: 'Acme', sans-serif;
+    margin:0;
+}
+
+.txthome{
+    padding-top:5px;
+    font-weight:auto;
+    font-size:17px;
+    font-family:Arial;
+    font-family: 'Acme', sans-serif;
+    margin:0;
+
+}
+
+/* fin de loginpage */
+
+/* debut de loginpage */
+
+.boutonconnection{
+    height:50px;
+    width:auto;
+    border:none;
+    background-color:#195e96;
+    border-radius:4px;
+    color:white;
+    font-weight:bold;
+    line-height:50px;
+    padding-right:20px;
+    cursor:pointer;
+}
+
+.googleconnect{
+    height:35px;
+    margin-top:6px;
+    float:left;
+    padding-left:10px;
+    padding-right:20px;
+}
+
+/* fin de loginpage */

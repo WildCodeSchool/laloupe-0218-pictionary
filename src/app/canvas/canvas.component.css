@@ -1,0 +1,73 @@
+canvas { border: 4px solid #295ea3; background-color: white; }
+
+.contmatch {
+  position: relative;
+}
+
+.logomatch {
+  width: 40%;
+  height: auto;
+  margin-left: 50%;
+  transform: translate(-60%);
+  z-index: 100;
+  position: relative;
+  margin-top:20px;
+}
+
+.match {
+  width: 80%;
+  height: auto;
+  margin-left: 50%;
+  transform: translate(-50%);
+  z-index: 90;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding-bottom: 125px;
+  margin-top:150px
+}
+
+.draw{
+  position: relative;
+  left:0;
+  top:50px;
+  border-radius: 10px;
+}
+
+.motadeviner{
+  position: absolute;
+  right:100px;
+  top:50%;
+  background-color:#295ea3;
+  color:white;
+  font-family: 'Acme', sans-serif;
+  font-weight:bold;
+  padding:10px;
+  border-radius:5px;
+}
+
+.boutonquit{
+  position: absolute;
+  right:15px;
+  bottom:15px;
+  background-color:#295ea3;
+  color:white;
+  font-family: 'Acme', sans-serif;
+  font-weight:bold;
+  padding:10px;
+  border-radius:5px;
+  border:none;
+  cursor:pointer;
+}
+
+.formword{
+  position:absolute;
+  top:50%;
+  right:50px;
+  background-color: #295ea3;
+  color:white;
+  padding:7px;
+  border-radius:5px;
+  font-family: 'Acme', sans-serif;
+
+}
