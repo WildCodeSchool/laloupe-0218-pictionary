@@ -63,7 +63,7 @@ canvas { border: 4px solid #295ea3; background-color: white; }
 .formword{
   position:absolute;
   top:50%;
-  right:100px;
+  right:50px;
   background-color: #295ea3;
   color:white;
   padding:7px;
