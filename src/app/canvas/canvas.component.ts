@@ -6,7 +6,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 
-
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/takeUntil';
@@ -24,7 +23,6 @@ import 'rxjs/add/observable/interval';
 
 import { Router } from '@angular/router';
 import { router } from '../app.routes';
-
 
 @Component({
   selector: 'app-canvas',
@@ -87,12 +85,6 @@ export class CanvasComponent implements AfterViewInit {
           this.drawOnCanvas(element.origin, element.dest);
           index += 1;
         }
-        /*         for (let index = 0; index < this.room.canvas.length; index++) {
-                  const element = this.room.canvas[index];
-                  this.lines.push({ origin: element.origin, dest: element.dest });
-                  this.drawOnCanvas(element.origin, element.dest);
-
-                } */
         console.log(this.room);
       });
   }
@@ -180,7 +172,6 @@ export class CanvasComponent implements AfterViewInit {
     Observable
       .fromEvent(canvasEl, 'mouseup')
       .subscribe((res: MouseEvent) => {
-        console.log('saveeee', this.lines);
         this.room.canvas = this.lines;
         this.updateRoom();
       });
