@@ -112,4 +112,16 @@
   background-color: rgb(4, 22, 37);
 }
 
+.buttongooglelogout{
+  width: 200px;
+  margin-top: 30px;
+  height: 40px;
+  color: white;
+  font-family: 'Acme', sans-serif;
+  background-color: rgb(36, 82, 119);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 /* fin de home */

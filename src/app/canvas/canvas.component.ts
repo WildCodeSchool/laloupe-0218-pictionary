@@ -36,8 +36,8 @@ export class CanvasComponent implements AfterViewInit {
   roomId: any;
   @ViewChild('canvas') public canvas: ElementRef;
 
-  @Input() public width = 500;
-  @Input() public height = 500;
+  @Input() public width = 400;
+  @Input() public height = 400;
 
   constructor(private authService: AuthService,
               private route: ActivatedRoute,
