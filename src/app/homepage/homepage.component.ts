@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../auth.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -22,8 +21,8 @@ export class HomepageComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
-
+  obs: Observable<number>;
   ngOnInit() {
-
+    
   }
 }

@@ -19,6 +19,11 @@ import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Room } from '../match-making/models/room';
 import { Title } from '@angular/platform-browser';
+import { timer } from 'rxjs/observable/timer';
+import 'rxjs/add/observable/interval';
+
+import { Router } from '@angular/router';
+import { router } from '../app.routes';
 
 
 @Component({
@@ -26,24 +31,42 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './canvas.component.html',
   styleUrls: ['./canvas.component.css'],
 })
+
+
 export class CanvasComponent implements AfterViewInit {
-  room: any;
+  room: Room;
   lines;
 
   private cx: CanvasRenderingContext2D;
   roomId: any;
   @ViewChild('canvas') public canvas: ElementRef;
 
-  @Input() public width = 500;
-  @Input() public height = 500;
+  @Input() public width = 400;
+  @Input() public height = 400;
 
   constructor(private authService: AuthService,
-              private route: ActivatedRoute,
-              private db: AngularFirestore) { }
+    private route: ActivatedRoute,
+    private router: Router,
+    private db: AngularFirestore) { }
 
   ngOnInit() {
     this.lines = [];
     let index = 0;
+<<<<<<< HEAD
+=======
+    /*   const timer = 60;
+  
+      if (Object.keys(this.room.players).length === 2) {
+        Observable.interval(1000)
+        .take(61)
+        .subscribe((n) => {
+          console.log(timer - n);
+          if (n === timer) {
+            console.log('perdue');
+          }
+        }); 
+      } */
+>>>>>>> random_word
 
     this.roomId = this.route.snapshot.paramMap.get('id');
     this.db
@@ -51,8 +74,22 @@ export class CanvasComponent implements AfterViewInit {
       .valueChanges()
       .subscribe((room) => {
         this.room = room;
+<<<<<<< HEAD
         
         while (index < this.room.canvas.length) {
+=======
+        console.log(this.me);
+        console.log(this.opponent);
+        if (this.me.win) {
+          alert('Congratulations ! You find the word !');
+          this.router.navigate(['']);
+        } else if (this.opponent.win) {
+          alert('Congratulations ! the other player has find the word !');
+          this.router.navigate(['']);
+        }
+
+        while (this.room.canvas && index < this.room.canvas.length) {
+>>>>>>> random_word
           const element = this.room.canvas[index];
           this.lines.push({ origin: element.origin, dest: element.dest });
           this.drawOnCanvas(element.origin, element.dest);
@@ -84,6 +121,47 @@ export class CanvasComponent implements AfterViewInit {
     this.roomId = this.route.snapshot.paramMap.get('id');
   }
 
+<<<<<<< HEAD
+=======
+  get me() {
+    if ((this.room.players[0].id === this.authService.authId)) {
+      return this.room.players[0];
+    }
+    return this.room.players[1];
+  }
+
+  get opponent() {
+    if ((this.room.players[0].id === this.authService.authId)) {
+      return this.room.players[1];
+    }
+    return this.room.players[0];
+  }
+
+  checkWord(param){
+    let inputValue = (<HTMLInputElement>document.getElementById('mot')).value;
+
+    if(inputValue === this.room.randomWord) {
+      this.me.win = true;
+      this.updateRoom();
+    }
+  }
+
+  isMyTurn(): boolean {
+    if ((this.room.players[0].id === this.authService.authId && this.room.turn === 0) ||
+      (this.room.players[1].id === this.authService.authId && this.room.turn === 1)) {
+      return true;
+    }
+    return false;
+  }
+
+  changeTurn() {
+    this.room.turn = this.room.turn === 0 ? 1 : 0;
+    this.db
+      .doc<Room>('rooms/' + this.roomId)
+      .set(this.room);
+  }
+
+>>>>>>> random_word
   private captureEvents(canvasEl: HTMLCanvasElement) {
     Observable
       .fromEvent(canvasEl, 'mousedown')
@@ -93,9 +171,15 @@ export class CanvasComponent implements AfterViewInit {
           .takeUntil(Observable.fromEvent(canvasEl, 'mouseup'))
           .pairwise();
       })
+      .filter(() => {
+        return this.isMyTurn();
+      })
       .subscribe((res: [MouseEvent, MouseEvent]) => {
         const rect = canvasEl.getBoundingClientRect();
+<<<<<<< HEAD
         console.log('coucou');
+=======
+>>>>>>> random_word
         const prevPos = {
           x: res[0].clientX - rect.left,
           y: res[0].clientY - rect.top,
@@ -133,6 +217,7 @@ export class CanvasComponent implements AfterViewInit {
     this.db.doc<Room>('rooms/' + this.roomId).update(this.room);
   }
 }
+<<<<<<< HEAD
 
 let wordList = ['ice','boy','dog','volcan','girl','cat','fire','phone','bottle','mouse'];
 let numberRamdomForWordList = Math.round(Math.random() * wordList.length);
@@ -140,3 +225,5 @@ console.log(wordList[numberRamdomForWordList]);
 
 
 /* fin ramdomword */
+=======
+>>>>>>> random_word
