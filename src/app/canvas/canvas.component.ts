@@ -52,8 +52,6 @@ export class CanvasComponent implements AfterViewInit {
   ngOnInit() {
     this.lines = [];
     let index = 0;
-<<<<<<< HEAD
-=======
     /*   const timer = 60;
   
       if (Object.keys(this.room.players).length === 2) {
@@ -66,7 +64,6 @@ export class CanvasComponent implements AfterViewInit {
           }
         }); 
       } */
->>>>>>> random_word
 
     this.roomId = this.route.snapshot.paramMap.get('id');
     this.db
@@ -74,10 +71,6 @@ export class CanvasComponent implements AfterViewInit {
       .valueChanges()
       .subscribe((room) => {
         this.room = room;
-<<<<<<< HEAD
-        
-        while (index < this.room.canvas.length) {
-=======
         console.log(this.me);
         console.log(this.opponent);
         if (this.me.win) {
@@ -89,7 +82,6 @@ export class CanvasComponent implements AfterViewInit {
         }
 
         while (this.room.canvas && index < this.room.canvas.length) {
->>>>>>> random_word
           const element = this.room.canvas[index];
           this.lines.push({ origin: element.origin, dest: element.dest });
           this.drawOnCanvas(element.origin, element.dest);
@@ -121,8 +113,6 @@ export class CanvasComponent implements AfterViewInit {
     this.roomId = this.route.snapshot.paramMap.get('id');
   }
 
-<<<<<<< HEAD
-=======
   get me() {
     if ((this.room.players[0].id === this.authService.authId)) {
       return this.room.players[0];
@@ -161,7 +151,6 @@ export class CanvasComponent implements AfterViewInit {
       .set(this.room);
   }
 
->>>>>>> random_word
   private captureEvents(canvasEl: HTMLCanvasElement) {
     Observable
       .fromEvent(canvasEl, 'mousedown')
@@ -176,10 +165,6 @@ export class CanvasComponent implements AfterViewInit {
       })
       .subscribe((res: [MouseEvent, MouseEvent]) => {
         const rect = canvasEl.getBoundingClientRect();
-<<<<<<< HEAD
-        console.log('coucou');
-=======
->>>>>>> random_word
         const prevPos = {
           x: res[0].clientX - rect.left,
           y: res[0].clientY - rect.top,
@@ -217,13 +202,3 @@ export class CanvasComponent implements AfterViewInit {
     this.db.doc<Room>('rooms/' + this.roomId).update(this.room);
   }
 }
-<<<<<<< HEAD
-
-let wordList = ['ice','boy','dog','volcan','girl','cat','fire','phone','bottle','mouse'];
-let numberRamdomForWordList = Math.round(Math.random() * wordList.length);
-console.log(wordList[numberRamdomForWordList]);
-
-
-/* fin ramdomword */
-=======
->>>>>>> random_word
