@@ -47,7 +47,7 @@ export class CanvasComponent implements AfterViewInit {
     this.lines = [];
     let index = 0;
     /*   const timer = 60;
-  
+
       if (Object.keys(this.room.players).length === 2) {
         Observable.interval(1000)
         .take(61)
@@ -56,7 +56,7 @@ export class CanvasComponent implements AfterViewInit {
           if (n === timer) {
             console.log('perdue');
           }
-        }); 
+        });
       } */
 
     this.roomId = this.route.snapshot.paramMap.get('id');
