@@ -83,9 +83,16 @@ export class CanvasComponent implements AfterViewInit {
           });
           this.router.navigate(['/']);
         }
+        if (this.room.players[0].loose === true) {
+          alert('You loose');
+          this.db.doc<Room>('rooms/' + this.roomId).delete().then(() => {
+          });
+          this.router.navigate(['/']);
+        }
         console.log(this.room);
       });
   }
+
 
   public ngAfterViewInit() {
     const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
@@ -103,16 +110,23 @@ export class CanvasComponent implements AfterViewInit {
     this.roomId = this.route.snapshot.paramMap.get('id');
   }
 
+  essais = 5;
+
   checkWord(param) {
     const inputValue = (<HTMLInputElement>document.getElementById('mot')).value;
-    console.log('pute');
 
     if (inputValue === this.room.randomWord) {
       this.room.players[0].win = true;
       this.room.players[1].win = true;
       this.updateRoom();
     } else {
-      alert('You loose! Try again');
+      this.essais = this.essais - 1;
+      alert('Try again, you still have ' + this.essais + ' attemps');
+      if (this.essais <= 0) {
+        this.room.players[0].loose = true;
+        this.room.players[1].loose = true;
+        this.updateRoom();
+      }
     }
   }
 
