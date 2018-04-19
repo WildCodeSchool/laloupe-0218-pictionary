@@ -1,10 +1,6 @@
 import { AppPage } from './app.po';
 
-<<<<<<< HEAD
-describe('angular1 App', () => {
-=======
-describe('angularp App', () => {
->>>>>>> dev
+describe('Pictionary App', () => {
   let page: AppPage;
 
   beforeEach(() => {
