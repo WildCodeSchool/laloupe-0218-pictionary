@@ -11,7 +11,7 @@
       <img src="assets/penstep2.jpg" class="profileimage">
       <p class="textstep2">
         STEP 2 - IF YOU ARE THE DRAWER, YOU WILL HAVE TO DRAW AN IMPOSED WORD OF OUR PROPOSITION LIST AND MAKE SOMEONE GUESS THIS
-        WORD IN A GIVEN TIME.
+        WORD IN MAXIMUM FIVE ATTEMPS.
         <br> IF YOU ARE THE DIVINER YOU WILL HAVE TO FIND WHAT THE DRAWER IS DRAWING.
       </p>
     </div>
@@ -22,11 +22,11 @@
       </p>
     </div>
 
-    
+
     <div *ngIf="authService.name; else showLogin">
       <h1>Hello {{ authService.name }}!</h1>
       <button (click)="logout()" class="buttongooglelogout">Logout</button>
-    <button class="buttonnext" routerLink="/match-making">Play</button>      
+    <button class="buttonnext" routerLink="/match-making">Play</button>
     </div>
     <ng-template #showLogin>
       <button class="boutonconnection" (click)="login()">
